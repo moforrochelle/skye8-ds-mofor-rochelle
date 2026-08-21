@@ -1,5 +1,7 @@
 # SKYE8 Health No-Show Prediction
 
+This project focuses on predicting healthcare appointment no-shows.
+
 This project analyses healthcare appointment attendance and builds a machine learning model to predict patient no-shows.
 
 ## Project Goals
