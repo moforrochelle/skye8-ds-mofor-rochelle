@@ -1,6 +1,6 @@
 # SKYE8 Health No-Show Prediction
 
-This project analyses healthcare appointment attendance patterns
+This project analyses healthcare appointment attendance patterns and focuses on predicting healthcare appointment no-shows
 
 ## Project Goals
 
