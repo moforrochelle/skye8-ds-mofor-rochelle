@@ -19,3 +19,12 @@ Install the required packages with:
     pip install -r requirements.txt
 
 Project data is stored outside version control, and database credentials must be supplied through environment variables.
+
+
+## Security and Data Handling
+
+Raw project data must remain outside version control.
+
+Database credentials and connection details must never be hard-coded in source code or committed to the repository. They must be supplied through environment variables.
+
+The `.env` file is excluded from Git through `.gitignore`.
