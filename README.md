@@ -45,6 +45,6 @@ requirements.txt  Python dependencies
 
 ## Database
 
-This project uses PostgreSQL installed and running locally during development.
+This project uses PostgreSQL installed and running locally through Postgres.app during development.
 
 Database connection details are provided through environment variables and are not stored in the repository.
