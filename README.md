@@ -41,3 +41,10 @@ README.md      Project documentation
 requirements.txt  Python dependencies
 .gitignore     Files excluded from version control
 
+
+
+## Database
+
+This project uses PostgreSQL installed and running locally during development.
+
+Database connection details are provided through environment variables and are not stored in the repository.
