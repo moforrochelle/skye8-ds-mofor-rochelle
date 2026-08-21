@@ -20,7 +20,6 @@ Install the required packages with:
 
 Project data is stored outside version control, and database credentials must be supplied through environment variables.
 
-
 ## Security and Data Handling
 
 Raw project data must remain outside version control.
@@ -28,3 +27,17 @@ Raw project data must remain outside version control.
 Database credentials and connection details must never be hard-coded in source code or committed to the repository. They must be supplied through environment variables.
 
 The `.env` file is excluded from Git through `.gitignore`.
+
+## Project Structure
+
+text
+data/          Project data, excluded from version control
+src/           Reusable Python source code
+sql/           PostgreSQL schema and query scripts
+notebooks/     Jupyter notebooks for analysis and modelling
+tests/         Automated tests
+reports/       Project documentation and reports
+README.md      Project documentation
+requirements.txt  Python dependencies
+.gitignore     Files excluded from version control
+
