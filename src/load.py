@@ -28,7 +28,7 @@ def clean_boolean(value):
 
 
 def clean_distance(value):
-    if value is None:
+    if value is None or pd.isna(value):
         return None
 
     value = str(value).strip().lower().replace("km", "").strip()
@@ -37,6 +37,7 @@ def clean_distance(value):
         return None
 
     return float(value)
+
 
 def clean_integer(value):
     if value is None:
