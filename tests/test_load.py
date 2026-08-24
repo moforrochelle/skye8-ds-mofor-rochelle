@@ -36,3 +36,44 @@ def test_clean_timestamp():
     assert clean_timestamp("15/04/2025 08:15") is not None
     assert clean_timestamp("2025-04-08 06:15:00") is not None
     assert clean_timestamp("1755699300") is not None
+    
+def test_load_facilities_is_idempotent():
+    from src.load import load_facilities
+
+    class FakeCursor:
+        def __init__(self):
+            self.queries = []
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc_value, traceback):
+            pass
+
+        def execute(self, query, values):
+            self.queries.append(query)
+
+    class FakeConnection:
+        def __init__(self):
+            self.cursor_instance = FakeCursor()
+            self.commit_count = 0
+
+        def cursor(self):
+            return self.cursor_instance
+
+        def commit(self):
+            self.commit_count += 1
+
+    conn = FakeConnection()
+
+    load_facilities(conn)
+    first_load_queries = len(conn.cursor_instance.queries)
+
+    load_facilities(conn)
+    second_load_queries = len(conn.cursor_instance.queries)
+
+    assert second_load_queries == first_load_queries * 2
+    assert all(
+        "ON CONFLICT (facility_id) DO NOTHING" in query
+        for query in conn.cursor_instance.queries
+    )
