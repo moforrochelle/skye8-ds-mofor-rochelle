@@ -154,3 +154,17 @@ FROM facility_rates
 CROSS JOIN overall_rate
 WHERE facility_rates.no_show_rate > overall_rate.average_no_show_rate
 ORDER BY facility_rates.no_show_rate DESC;
+
+-- EXPLAIN ANALYZE evidence
+--
+-- Indexed query tested:
+--
+-- SELECT *
+-- FROM appointments
+-- WHERE facility_id = 'FC-04';
+--
+-- Before the index: Sequential Scan.
+-- After the index: Bitmap Heap Scan with a Bitmap Index Scan.
+--
+-- Full EXPLAIN ANALYZE output and discussion:
+-- reports/index_performance.md
