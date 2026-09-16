@@ -108,16 +108,26 @@ Only confirmed loss and no finding were used as labels. Equipment-fault stations
 
 There were only 5 confirmed-loss stations, so the supervised results have a lot of uncertainty.
 
-The tuned model had:
+The baseline model had:
+
+* Average Precision: about **0.611**
+* ROC-AUC: about **0.913**
+
+After hyperparameter tuning, the model had:
 
 * Average Precision: about **0.648**
 * ROC-AUC: about **0.953**
 
-Repeated cross-validation showed that the results could change quite a lot between samples. This is mainly because there were only 5 positive cases.
+The tuned model improved the cross-validation scores compared with the baseline. However, repeated cross-validation showed substantial variation between samples. With only five confirmed-loss cases, the performance estimate has a lot of uncertainty.
 
-The supervised and unsupervised top 20 lists had 7 stations in common.
+The tuning improvement should therefore be interpreted cautiously. It cannot be treated as strong evidence of a reliable general improvement because the number of confirmed-loss examples is very small.
 
-Because the audit sample was small, the supervised model was not treated as the final truth for the whole network.
+The supervised and unsupervised top-20 lists had 7 stations in common.
+
+For the final network-wide investigation list, the unsupervised ranking was used as the main ranking. The main reason is that the supervised model has very few positive training examples, while the unsupervised approach does not depend on having a complete set of confirmed-loss labels.
+
+The supervised model is still useful as a comparison and as supporting evidence, but it was not treated as the final truth for the whole network.
+
 
 ## 8. Checking different station groups
 
@@ -215,3 +225,10 @@ There are several limitations to this analysis:
 8. The XAF estimates depend on the observed average sales value per litre.
 
 For these reasons, the final ranking should be treated as a way to prioritise investigations, not as proof of fuel theft or deliberate loss.
+
+
+The brief gives a typical industry tolerance of a few tenths of one percent of throughput. The network median unexplained loss was about **0.83%**, which is above that typical tolerance, while the upper quartile was about **2.57%**.
+
+These values show that the network contains a meaningful amount of unexplained variation, but they should not automatically be interpreted as theft or deliberate loss. Measurement error, equipment problems, temperature effects and recording issues can also create unexplained differences.
+
+The loss percentages are therefore treated as signals for investigation rather than proof of deliberate loss.
